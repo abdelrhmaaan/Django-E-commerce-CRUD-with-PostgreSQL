@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row">
+        {% for product in filtered_products %}
+        <div class="col-md-3">
+            <div class="card">
+                <img src="{{product.image.url}}" class="card-img-top" alt='Not LOaded'>
+                {% comment %} <img src={% static images.image %} class="card-img-top" alt='Not LOaded'> {% endcomment %}
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text"> {{product.price}} </p>
+                    <a href="product/{{product.id}}" class="btn btn-primary">Show</a>
+                    <a href={% url "dproduct" product.id %} class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div> 
+
+
+{% endblock content %}
