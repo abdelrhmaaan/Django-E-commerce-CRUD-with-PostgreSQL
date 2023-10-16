@@ -12,6 +12,7 @@ urlpatterns = [
     path('search',v.search,name='search'),
     path('create',v.create,name='create'),
     path('edit/<id>',v.edit,name='edit'),
+    path('category/<cat_name>',v.category,name='category'),
     
 ]
 

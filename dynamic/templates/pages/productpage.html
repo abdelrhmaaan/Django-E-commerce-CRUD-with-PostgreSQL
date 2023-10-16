@@ -20,6 +20,9 @@
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text"> {{product.price}} $</p>
                     <p>{% lorem 1 b random %}</P>
+                    {% if product.category != None %}
+                        <p>  Category: <a class="btn btn-success" href= {% url "category" product.category %}>{{product.category}} </a></p>
+                    {% endif %}
                     <p> IN STock : {{product.inStock}} </p>
                 </div>
             </div>

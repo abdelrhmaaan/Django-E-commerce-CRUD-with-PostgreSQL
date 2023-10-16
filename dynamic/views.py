@@ -41,7 +41,8 @@ def search(request):
 def create(request):
     name = request.POST.get('name')
     price = request.POST.get('price')
-    image = request.POST.get('image')
+    # image = request.POST.get('image')
+    image = request.FILES.get('image')
     newProdcut = m.Product()
     newProdcut.name = name
     newProdcut.price = price
@@ -56,7 +57,8 @@ def edit(request,id):
     if request.method == 'POST':
         name = request.POST.get('name')
         price = request.POST.get('price')
-        image = request.POST.get('image')
+        # image = request.POST.get('image')
+        image = request.FILES.get('image')
         editedProdcut.name = name
         editedProdcut.price = price
         editedProdcut.image = image
@@ -64,5 +66,12 @@ def edit(request,id):
             editedProdcut.save()
             return redirect('home')
     return render(request,'pages/edit.html',context={'eproduct':editedProdcut})
+
+def category(request,cat_name):
+    cat = m.Category.objects.get(name = cat_name)
+    products = m.Product.objects.filter(category=cat.id)
+    # print(products)
+    return render(request,'pages/category.html',context={'category':cat,'products':products})
+
 # make table ==> insert data into the table 
 # retrieve data from the table 
